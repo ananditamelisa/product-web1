@@ -10,8 +10,13 @@ import java.util.Optional;
 
 @Component
 public class ProductServiceImpl implements ProductService {
-    @Autowired
+
     private ProductRepository productRepository;
+    @Autowired
+    public ProductServiceImpl(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
+
     @Override
     public Product create(Product product) {
         return productRepository.save(product);
@@ -19,12 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(Long id) {
-        Optional<Product> byId = productRepository.findById(id);
-        if(byId.isPresent()){
-            return byId.get();
-        }else{
-            return null;
-        }
+        return productRepository.findById(id).orElse(null);
     }
 
     @Override

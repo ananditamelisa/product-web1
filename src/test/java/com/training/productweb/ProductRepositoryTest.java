@@ -21,23 +21,29 @@ public class ProductRepositoryTest {
     @Before
     public void setUp()throws Exception{
         p1 = new Product();
-        p1.setName("Rinso");
-        p1.setCategory("Cleanser");
-        p1.setPrice(15000);
+        p1.setName("I Live in The Woods");
+        p1.setCategory("Folk and Fairytales");
+        p1.setWriter("Jacob Hamilton & Tammy Vo");
+        p1.setImage("https://99designs-blog.imgix.net/wp-content/uploads/2017/07/attachment_69366720-e1500060364535.jpg?auto=format&q=60&fit=max&w=930");
+        p1.setPrice(75000);
         p1.setStock(500);
         create1 = productRepository.save(p1);
 
         p2 = new Product();
-        p2.setName("Muji Notebook");
-        p2.setCategory("Stationery");
-        p2.setPrice(35000);
+        p2.setName("Giraffes Cant Dance");
+        p2.setCategory("Fables and Animal Story");
+        p2.setWriter("Giles Andreae & Guy Parker-Rees");
+        p2.setImage("https://s3-us-west-2.amazonaws.com/tabs.web.media/b/p/bpqm/bpqm-square-orig.jpg");
+        p2.setPrice(76000);
         p2.setStock(100);
         create2 = productRepository.save(p2);
 
         p3 = new Product();
-        p3.setName("Samsung Galaxy S10");
-        p3.setCategory("Electronic");
-        p3.setPrice(39000000);
+        p3.setName("Two Very Naughty Piglets");
+        p3.setCategory("Fables and Animal Story");
+        p3.setWriter("Lesley Glover");
+        p3.setImage("https://images-na.ssl-images-amazon.com/images/I/611YSdTLvgL._SX258_BO1,204,203,200_.jpg");
+        p3.setPrice(39000);
         p3.setStock(5);
         create3 = productRepository.save(p3);
     }
@@ -54,13 +60,13 @@ public class ProductRepositoryTest {
     public void testUpdate(){
         p2 = new Product();
         p2.setProductID(create2.getProductID());
-        p2.setName("Snappy Notebook");
-        p2.setCategory("Stationery");
-        p2.setPrice(35000);
+        p2.setName("Giraffe Cant Dance");
+        p2.setCategory("Animal Story");
+        p2.setPrice(76000);
         p2.setStock(100);
         updated = productRepository.save(p2);
 
-        Assert.assertTrue("member harus terupdate",
+        Assert.assertTrue("product harus terupdate",
                 updated.getProductID()==create2.getProductID());
 
     }
@@ -70,7 +76,7 @@ public class ProductRepositoryTest {
         Optional<Product> byId = productRepository.findById(create3.getProductID());
         if(byId.isPresent()){
             Assert.assertTrue("harusnya member m3 bisa ketemu",
-                    byId.get().getName().equals("Samsung Galaxy S10"));
+                    byId.get().getName().equals("Two Very Naughty Piglets"));
         }
     }
 
